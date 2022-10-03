@@ -17,8 +17,7 @@ class Chef
           else
             resolved_names = names.each_with_index.map { |name, i| available_version(i).to_s unless name.nil? }
             puts "\nDEBUGRP new_resource.package_name: #{new_resource.package_name} #{rpmcow_denylist.include?(new_resource.package_name)}"
-            resolved_names_in_denylist = resolved_names.select.with_index { |name, i| rpmcow_denylist.include?(package_name_array[i])}
-            resolved_names_not_in_denylist = resolved_names.select.with_index { |name, i| !rpmcow_denylist.include?(package_name_array[i])}
+            resolved_names_in_denylist, resolved_names_not_in_denylist = resolved_names.partition.with_index { |name, i| rpmcow_denylist.include?(package_name_array[i])}
             puts "\nDEBUGRP resolved_names: #{resolved_names}"
             puts "\nDEBUGRP resolved_names_in_denylist: #{resolved_names_in_denylist} empty: #{resolved_names_in_denylist.empty?}"
             puts "\nDEBUGRP resolved_names_not_in_denylist: #{resolved_names_not_in_denylist} empty: #{resolved_names_not_in_denylist.empty?}"
