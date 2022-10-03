@@ -1,0 +1,5 @@
+resources:
+ - type: "apt_update"
+ - type: "package"
+   name: "httpd"
+   options: "--verbose"
